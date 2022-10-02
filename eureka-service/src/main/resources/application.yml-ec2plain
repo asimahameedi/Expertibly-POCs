@@ -1,0 +1,64 @@
+server: 
+  port: 8761
+  enable-self-preservation: false
+spring: 
+  application: 
+    name: EUREKA-SERVICE-PROD
+ApplicationType: SPRING
+UserName:  ASIMA
+   
+
+eureka:
+   client:
+      registerWithEureka: false
+      fetchRegistry: false
+      region: us-east-2
+      preferedSameZone: true
+      availabilityZones:
+         us-east-2: us-east-2c
+      serviceUrl:
+         us-east-2c: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8761/eureka/
+         defaultZone: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8761/eureka/
+       #defaultZone: http://3.133.195.91:8761/eureka
+  
+       
+   instance:
+      metadataMap.zone: us-east-2c
+      #hostname:0.0.0.0
+      #hostname:192.168.0.195
+     # hostname:localhost     
+     # hostname:3.133.195.91
+     # prefer-ip-address:true
+logging:
+   level:
+      com:
+         netflix:
+            eureka: OFF
+            discovery: OFF
+    
+
+  
+ 
+    
+
+zuul:
+#Service will be mapped under the /api URI
+   routes:
+      db-service:  
+         path: /db-service/**
+         url: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8300
+         #url: http://3.133.195.91:8300
+     # stock-service:
+      #  path: /stock-service/**
+       # url: http:/ec2-3-133-195-91.us-east-2.compute.amazonaws.com:9002
+        #url: http:/3.133.195.91:9002
+
+
+      
+      
+      
+    
+      
+      
+      
+    

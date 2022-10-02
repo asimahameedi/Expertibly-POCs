@@ -1,0 +1,4 @@
+FROM openjdk:8-alpine
+COPY ./eureka-service.jar eureka-service.jar
+EXPOSE 8081
+ENTRYPOINT ["java", "-jar", "eureka-service.jar"]

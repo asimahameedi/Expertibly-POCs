@@ -1,0 +1,21 @@
+--- 
+ribbon: 
+  ConnectTimeout: 30000
+  ReadTimeout: 990000
+  maxAutoRetries: 1
+  MaxAutoRetriesNextServer: 2
+  eureka:
+    enabled: false
+server: 
+  port: 8080
+zuul: 
+  ignoredServices: '*'
+  prefix: /api
+  routes:
+    db-service:
+      path: /db-service/**
+      url: "http://localhost:8300/"
+      stripPrefix: false
+    stock-service:
+      path: /stock-service/**
+      url: "http://localhost:9002/"

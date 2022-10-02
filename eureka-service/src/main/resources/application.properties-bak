@@ -1,0 +1,26 @@
+spring.application.name=EUREKA-SERVICE-LOCAL
+server.port=8761
+
+UserName = ASIMA
+ApplicationType = SPRING
+
+#spring.application.name=eureka-service
+#Eureka server
+eureka.client.fetch-registry=false
+eureka.client.register-with-eureka=false
+logging.level.com.netflix.eureka=OFF
+logging.level.com.netflix.discovery=OFF
+#zuul.routes.stock-service.url=http://localhost:9002
+#zuul.routes.stock-service.url=http://192.168.0.195:9003
+# using zeros eureka service doesn't go up
+#zuul.routes.stock-service.url=http://0.0.0.0:9003
+#zuul.routes.stock-service.url=http://192.168.0.195:9002
+// for EC2 instance with elastic IP
+#zuul.routes.stock-service.url=http://18.221.153.248:9002
+#zuul.routes.db-service.url=http://18.221.153.248:8300
+zuul.routes.db-service.url=http://localhost:8300
+#zuul.routes.db-service.url=http://192.168.0.195:8301
+#zuul.routes.db-service.url=http://0.0.0.0:8301
+#zuul.routes.db-service.url=http://192.168.0.195:8300
+ribbon.eureka.enabled=false
+eureka.instance.prefer-ip-address=true
