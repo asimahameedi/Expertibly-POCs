@@ -1,0 +1,92 @@
+package main;
+
+import java.util.ArrayDeque;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Queue;
+import java.util.Set;
+
+public class BFSGraphs2Easy {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		GraphNode<Integer> start = new GraphNode<>(10);
+//		GraphNode<Integer> firstNeighbor = new GraphNode<>(2);
+//		start.connect(firstNeighbor);
+//		 
+//		GraphNode<Integer> firstNeighborNeighbor = new GraphNode<>(3);
+//		firstNeighbor.connect(firstNeighborNeighbor);
+//		firstNeighborNeighbor.connect(start);
+//		 
+//		GraphNode<Integer> secondNeighbor = new GraphNode<>(4);
+//		start.connect(secondNeighbor);
+//		
+//		Optional<GraphNode<Integer>> node =search(4, firstNeighborNeighbor);
+//		System.out.println("node " + node.get().getValue());
+//		
+		GraphNode<Integer> start = new GraphNode<>(10);
+		GraphNode<Integer> firstNeighbor = new GraphNode<>(2);
+		start.connect(firstNeighbor);
+		 
+		GraphNode<Integer> firstNeighborNeighbor = new GraphNode<>(4);
+		firstNeighbor.connect(firstNeighborNeighbor);
+		firstNeighborNeighbor.connect(start);
+		 
+		GraphNode<Integer> secondNeighbor = new GraphNode<>(3);
+		start.connect(secondNeighbor);
+		
+//		Optional<GraphNode<Integer>> node =search(1, firstNeighborNeighbor);
+		search2(firstNeighborNeighbor);
+		
+	}
+	
+	public static  void search2( GraphNode<Integer> start) {
+	    Queue<GraphNode> queue = new ArrayDeque<>();
+	    
+	    Set<GraphNode<Integer>> alreadyVisited = new HashSet<>();
+
+	    queue.add(start);
+	 
+	    GraphNode currentNode;
+	 
+	    while (!queue.isEmpty()) {
+	        currentNode = queue.remove();
+	        
+	        System.out.println("current node " + currentNode.getValue());
+	        
+	        alreadyVisited.add(currentNode);
+            queue.addAll(currentNode.getNeighbors());
+            queue.removeAll(alreadyVisited);
+	        
+	    }
+	   
+	}
+	public static <T> Optional<GraphNode<T>> search(T value, GraphNode<T> start) {
+		
+	    Queue<GraphNode<T>> queue = new ArrayDeque<>();
+	    
+	    Set<GraphNode<T>> alreadyVisited = new HashSet<>();
+
+	    queue.add(start);
+	 
+	    GraphNode<T> currentNode;
+	 
+	    while (!queue.isEmpty()) {
+	        currentNode = queue.remove();
+//	        LOGGER.info("Visited node with value: {}", currentNode.getValue());
+	     
+	        if (currentNode.getValue().equals(value)) {
+	            return Optional.of(currentNode);
+	        } else {
+	            alreadyVisited.add(currentNode);
+	            queue.addAll(currentNode.getNeighbors());
+	            queue.removeAll(alreadyVisited);
+	        }
+	    }
+	 
+	    return Optional.empty();
+	    
+	}
+
+
+}

@@ -1,0 +1,41 @@
+package main;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class BFSgraphs {
+	static void traversal (Node node) {
+//		Queue<Node> q = new LinkedList<Node>();
+//		HashMap<Node, LinkedList<Node>> adjacencyMap;
+//		
+//	if (node!=null) {
+////		System.out.println("node is not null");
+//		node.setVisited(true);
+//		q.add(node);
+//		
+//		while(!q.isEmpty()) {
+////			System.out.println("q not empty");
+////			System.out.println(q.peek().visited +" q not empty");
+//			node = q.remove();
+////			if (node.visited) {
+////				continue;
+////			}
+//			System.out.println(node.data +" ");
+////			node.setVisited(true);
+//			
+//			if (node.left!=null && !node.left.isVisited()) {
+//				node.left.setVisited(true);
+//				q.add(node.left);
+//			}
+//			
+//			if (node.right!=null && !node.right.isVisited()) {
+//				q.add(node.right);
+//			}
+//			
+//			}
+//	}//not an empty root
+		}
+	}
+
+

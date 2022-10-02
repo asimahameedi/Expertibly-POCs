@@ -1,0 +1,58 @@
+package main;
+
+public class BinarySearch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Integer searchFor=8;
+		Integer [] array= {2, 4, 6, 7, 8, 10, 12};
+		
+		boolean found =search(0, array.length -1, array, searchFor);
+		System.out.println("found "+ found);
+	}
+
+	private static boolean search(int low, int high, Integer []array, Integer searchFor) {
+	
+		// TODO Auto-generated method stub
+		
+		System.out.println("low "+ low);
+		System.out.println("high "+ high);
+//		boolean isThere=false;
+		boolean isThere;
+		
+		int mid = (low+high)/2;
+		
+		
+		System.out.println("mid "+ mid);
+		
+		if (searchFor == array[mid]) {
+			System.out.println("searchFor == array[mid] ");
+			
+			isThere=true;
+			System.out.println("isThere " + isThere);
+			return isThere;
+		}
+		
+		//check this later
+		if (mid == array.length -1) {
+			System.out.println(" I am here ");
+			isThere=false;
+			return isThere;
+		}
+		
+		
+		
+		if (searchFor > array[mid]) {
+			low = mid + 1;
+			search(low, high, array, searchFor);
+		}else if (searchFor < array[mid]) {
+			high = mid -1;
+			search(low, high, array, searchFor);
+		}
+		
+		
+																																						
+		return isThere;
+	}
+
+}

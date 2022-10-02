@@ -1,0 +1,35 @@
+package main;
+
+public class ReverseStringWithSpecial {
+	
+//	1) Create a temporary character array say temp[].
+//	2) Copy alphabetic characters from given array to temp[].
+//	3) Reverse temp[] using standard string reversal algorithm.
+//	4) Now traverse input string and temp in a single loop. Wherever there is alphabetic character is input string, replace it with current character of temp[].
+//	Input:   str = "a,b$c"
+//	Output:  str = "c,b$a"
+//	Input:   str = "Ab,c,de!$"
+//	Output:  str = "ed,c,bA!$"
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String str = "a,b$c";
+		char [] array = str.toCharArray();
+		char retArray [] = reverse(array);
+		String output = new String(retArray);
+		System.out.println(output);
+
+	}
+	public static char [] reverse(char [] array) {
+		char [] temp;
+		for (int i =array.length -1; i>=0; i--) {
+			System.out.println("array[i] "+ array[i]);
+			Character.toString(array[i]);
+		}
+		
+		
+		return null;
+		
+	}
+
+}

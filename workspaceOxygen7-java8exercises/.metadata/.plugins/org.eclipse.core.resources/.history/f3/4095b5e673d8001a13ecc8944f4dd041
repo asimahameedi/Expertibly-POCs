@@ -1,0 +1,55 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class ReverseStringWithSpecial {
+	
+//	1) Create a temporary character array say temp[].
+//	2) Copy alphabetic characters from given array to temp[].
+//	3) Reverse temp[] using standard string reversal algorithm.
+//	4) Now traverse input string and temp in a single loop. Wherever there is alphabetic character is input string, replace it with current character of temp[].
+//	Input:   str = "a,b$c"
+//	Output:  str = "c,b$a"
+//	Input:   str = "Ab,c,de!$"
+//	Output:  str = "ed,c,bA!$"
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String str = "a,b$c";
+		char [] array = str.toCharArray();
+		List<Character> retList = reverse(array);
+		String output = new String(retList.toString());
+		System.out.println(output);
+
+	}
+//	public static List<Character> reverse(char [] array) {
+	public static List<Character> reverse(char [] array) {
+		List<Character> temp = new ArrayList<Character>();
+		for (int i =array.length -1; i>=0; i--) {
+			System.out.println("array[i] "+ array[i]);
+//			String ch = Character.toString(array[i]);
+//			boolean letter =Character.isLetter(array[i]);
+//			
+			if (Character.isLetter(array[i])){
+				temp.add(array[i]);
+				System.out.println("i " + i);			
+			}
+			
+		}
+		int i=0;
+		Iterator j = temp.iterator();
+		while ( i< array.length && j.hasNext()) {
+			if (Character.isLetter(array[i])){
+				array[i]=(char) j.next();
+			}
+		}
+//		System.out.println("temp" + temp.toString());
+		
+		
+		return temp;
+		
+	}
+
+}

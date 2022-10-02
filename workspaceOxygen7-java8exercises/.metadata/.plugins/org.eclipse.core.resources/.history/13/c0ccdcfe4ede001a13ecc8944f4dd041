@@ -1,0 +1,254 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Queue;
+import java.util.Set;
+
+public class CycleRemoval {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		GraphC g = createGraph();
+		Set<String> trav = breadthFirstTraversal(g, "2");
+//		Set<String> trav = breadthFirstTraversal(g, "Bob");
+		trav.forEach(System.out::println);
+		
+//		boolean found =breadthFirstSearch( "5", g , "2");
+//		boolean found =breadthFirstSearch( "Bob", g , "Bob");
+		boolean cycle =breadthFirstContainsCycle( g , "2");
+//		boolean cycle =breadthFirstContainsCycle( g , "Bob");
+		System.out.println("Contains a cycle? " + cycle);
+		
+		if (cycle) {
+			List<VertexC> vert = breadthFirstRemoveCycles( g , "2");
+//			List<VertexC> vert = breadthFirstRemoveCycles( g , "Bob");
+			
+			for (VertexC item: vert) {
+		         System.out.println("adjacent vertices are "+ item.label);
+		      }
+			
+		}
+		
+		
+	}
+
+	static GraphC createGraph() {
+		GraphC graphC = new GraphC();
+//	    graphC.addVertex("Bob");
+//	    graphC.addVertex("Alice");
+//	    graphC.addVertex("Mark");
+//	    graphC.addVertex("Rob");
+//	    graphC.addVertex("Maria");
+//	    graphC.addEdge("Bob", "Alice");
+//	    graphC.addEdge("Bob", "Rob");
+//	    graphC.addEdge("Alice", "Mark");
+//	    graphC.addEdge("Rob", "Mark");
+//	    graphC.addEdge("Alice", "Maria");
+//	    graphC.addEdge("Rob", "Maria");
+//undirected graphs
+		graphC.addVertex("0");
+		graphC.addVertex("1");
+		graphC.addVertex("2");
+		graphC.addVertex("3");
+
+		graphC.addEdge("2", "0");
+		graphC.addEdge("2", "3");
+		graphC.addEdge("0", "1");
+//		graphC.addEdge("0", "2");
+//		graphC.addEdge("1", "2");
+//		graphC.addEdge("2", "1");
+		
+////		graph.addEdge("3", "3");
+		return graphC;
+	}
+
+	static Set<String> breadthFirstTraversal(GraphC graphC, String root) {
+		Set<String> visited = new LinkedHashSet<String>();
+		Queue<String> queue = new LinkedList<String>();
+		queue.add(root);
+		visited.add(root);
+		while (!queue.isEmpty()) {
+			String vertex = queue.poll();
+			for (VertexC v : graphC.getAdjVertices(vertex)) {
+				if (!visited.contains(v.label)) {
+					visited.add(v.label);
+					queue.add(v.label);
+				}
+			}
+		}
+		return visited;
+	}
+	
+	static boolean breadthFirstSearch(String searchLabel, GraphC graphC, String root) {
+		Set<String> visited = new LinkedHashSet<String>();
+		Queue<String> queue = new LinkedList<String>();
+		boolean found=false;
+		if (searchLabel.equals(root)) {
+			found=true;
+		} else {
+		
+				queue.add(root);
+				visited.add(root);
+				while (!queue.isEmpty()) {
+					String vertex = queue.poll();
+					if (vertex.equals(searchLabel)) {
+						found = true;
+						break;
+					}
+					
+					for (VertexC v : graphC.getAdjVertices(vertex)) {
+						if (!visited.contains(v.label)) {
+							visited.add(v.label);
+							queue.add(v.label);
+						} else 
+						{
+							visited.add(v.label);
+							queue.add(v.label);
+						}
+					}
+				}
+			}
+		return found;
+	}
+	
+	static boolean breadthFirstContainsCycle(GraphC graphC, String root) {
+		Set<String> visited = new LinkedHashSet<String>();
+		Queue<String> queue = new LinkedList<String>();
+
+		boolean cycle=false;
+		
+				queue.add(root);
+				visited.add(root);
+				while (!queue.isEmpty()) {
+					String vertex = queue.poll();
+					
+					for (VertexC v : graphC.getAdjVertices(vertex)) {
+						if (visited.contains(v.label)) {
+							
+							cycle=true;
+							break;
+						} else {
+							visited.add(v.label);
+							queue.add(v.label);
+								}
+					}
+				}
+
+		return cycle;
+	}
+	
+	static List<VertexC> breadthFirstRemoveCycles(GraphC graphC, String root) {
+		Set<String> visited = new LinkedHashSet<String>();
+		Queue<String> queue = new LinkedList<String>();
+
+				queue.add(root);
+				visited.add(root);
+				while (!queue.isEmpty()) {
+					String vertex = queue.poll();
+					
+					for (VertexC v : graphC.getAdjVertices(vertex)) {
+						if (visited.contains(v.label)) {
+							// is a cycle
+							// remove v from set of adj vertices
+							System.out.println("Vertex is "+ vertex);
+							System.out.println("v.label " + v.label);
+							graphC.removeEdge(vertex, v.label);
+							
+							return graphC.getAdjVertices(vertex);
+//							break;
+						} else {
+							visited.add(v.label);
+							queue.add(v.label);
+								}
+					}
+				}
+
+		return null; 
+	}
+
+}
+
+class VertexC {
+	String label;
+
+	VertexC(String label) {
+//    	System.out.println("vertex label " + label);
+		this.label = label;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(label);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VertexC other = (VertexC) obj;
+		return Objects.equals(label, other.label);
+	}
+
+}
+
+class GraphC {
+	private Map<VertexC, List<VertexC>> adjVertices = new HashMap<VertexC, List<VertexC>>();
+
+	// standard constructor, getters, setters - I created the setters & getters
+	// gets all vertices
+	public Map<VertexC, List<VertexC>> getAdjVertices() {
+		return adjVertices;
+	}
+
+
+	
+	public void setAdjVertices(Map<VertexC, List<VertexC>> adjVertices) {
+		this.adjVertices = adjVertices;
+	}
+
+	void addVertex(String label) {
+		// this was giving nullpointer exception because adjVertices collection was only declared but not created
+		adjVertices.putIfAbsent(new VertexC(label), new ArrayList<>());
+	}
+
+	void removeVertex(String label) {
+		VertexC v = new VertexC(label);
+		adjVertices.values().stream().forEach(e -> e.remove(v));
+		adjVertices.remove(new VertexC(label));
+	}
+
+	void addEdge(String label1, String label2) {
+		VertexC v1 = new VertexC(label1);
+		VertexC v2 = new VertexC(label2);
+		adjVertices.get(v1).add(v2);
+		adjVertices.get(v2).add(v1);
+	}
+
+	void removeEdge(String label1, String label2) {
+		VertexC v1 = new VertexC(label1);
+		VertexC v2 = new VertexC(label2);
+		List<VertexC> eV1 = adjVertices.get(v1);
+		List<VertexC> eV2 = adjVertices.get(v2);
+		if (eV1 != null)
+			System.out.println(" eV1 and v2 label1 and label2 "+ label1 + " "+ label2);
+			eV1.remove(v2);
+			
+		if (eV2 != null)
+			System.out.println(" eV2 and v1 label1 and label2 "+ label1 + " "+ label2);
+			eV2.remove(v1);
+	}
+
+	List<VertexC> getAdjVertices(String label) {
+		return adjVertices.get(new VertexC(label));
+	}
+}

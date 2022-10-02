@@ -1,0 +1,39 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class BreadthFirstGraph {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+class Vertex {
+    String label;
+    Vertex(String label) {
+        this.label = label;
+    }
+ 
+    // equals and hashCode
+}
+class Graph {
+    private Map<Vertex, List<Vertex>> adjVertices;
+    
+    // standard constructor, getters, setters  *****????
+    
+    
+    void addVertex(String label) {
+        adjVertices.putIfAbsent(new Vertex(label), new ArrayList<>());
+    }
+     
+    void removeVertex(String label) {
+        Vertex v = new Vertex(label);
+        adjVertices.values().stream().forEach(e -> e.remove(v));
+        adjVertices.remove(new Vertex(label));
+    }
+}

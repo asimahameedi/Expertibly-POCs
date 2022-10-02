@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+/Users/asimahameedi/Documents/workspaceOxygen7-java8exercises/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+1916199486.index
+3922223794.index
+1754208166.index
+2359311621.index
+1938627054.index
