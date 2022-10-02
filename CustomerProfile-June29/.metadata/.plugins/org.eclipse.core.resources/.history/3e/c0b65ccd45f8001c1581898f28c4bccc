@@ -1,0 +1,54 @@
+package com.dynamodb.CustomerProfile.repo;
+
+
+import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
+import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
+import com.amazonaws.services.dynamodbv2.model.KeyType;
+import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
+import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
+import com.dynamodb.CustomerProfile.config.DynamoDbConfig;
+import com.dynamodb.CustomerProfile.repo.constant.AppConstant;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.Arrays;
+
+
+
+
+@Repository
+public class CustProfileRepo {
+	@Autowired
+	DynamoDbConfig dynamoDbConfig;
+
+	
+public void createCustomerProfileTable() throws Exception{
+	
+		try {
+			System.out.println("creating the customer profile table, with ...");
+			Table table =DynamoDbConfig.getDynamoDB().createTable(AppConstant.CUSTPROFILE, 
+					
+					Arrays.asList(	
+						new KeySchemaElement(attributeName:"id", KeyType.HASH), 
+						new KeySchemaElement(attributeName:"name", KeyType.RANGE)
+						),
+					
+					Arrays.asList(	
+						new AttributeDefinition(attributeName:"id", ScalarAttributeType.S), 
+						new AttributeDefinition(attributeName:"name", ScalarAttributeType.S))),
+					
+						new ProvisionedThroughput(readCapacityUnits: 10L, writeCapacityUnits: 10L)
+					);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+						
+						
+		
+		
+	
+}
+}

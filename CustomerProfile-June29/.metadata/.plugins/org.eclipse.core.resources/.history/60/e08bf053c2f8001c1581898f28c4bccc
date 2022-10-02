@@ -1,0 +1,36 @@
+package com.dynamodb.CustomerProfile.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dynamodb.CustomerProfile.CustomerProfileApplication;
+import com.dynamodb.CustomerProfile.bean.CustomerProfile;
+
+
+
+@RestController
+public class CustomerProfileController {
+	
+@Autowired
+CustomerProfileApplication customerProfileApplication;
+@PostMapping(value="saveCustomerProfile", consumes ="application/json")
+public ResponseEntity saveCustomerProfile(@RequestBody CustomerProfile custProfile ) {
+	try {
+		
+		customerProfileApplication.
+		
+		
+	}catch (Exception e) {
+		
+	}
+	
+	
+	return null;
+}
+
+	
+
+}

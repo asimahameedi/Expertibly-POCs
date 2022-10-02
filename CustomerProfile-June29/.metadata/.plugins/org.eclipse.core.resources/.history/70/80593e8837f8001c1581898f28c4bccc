@@ -1,0 +1,5 @@
+package com.dynamodb.CustomerProfile.bean;
+
+public class CustomerProfile {
+
+}

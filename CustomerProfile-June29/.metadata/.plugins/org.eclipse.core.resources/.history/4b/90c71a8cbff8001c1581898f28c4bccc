@@ -1,0 +1,5 @@
+package com.dynamodb.CustomerProfile.controller;
+
+public class CustomerProfileController {
+
+}

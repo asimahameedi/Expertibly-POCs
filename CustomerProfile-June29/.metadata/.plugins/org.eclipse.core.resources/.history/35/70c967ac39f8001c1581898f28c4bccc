@@ -1,0 +1,5 @@
+package com.dynamodb.CustomerProfile.config;
+
+public class DynamoDbConfig {
+
+}

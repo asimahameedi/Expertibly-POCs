@@ -1,0 +1,11 @@
+package com.dynamodb.CustomerProfile.repo.constant;
+
+public class AppConstant {
+	 public static final String  CUSTPROFILE =null;
+	    
+	   
+	    
+	    private AppConstant() {
+}
+
+}

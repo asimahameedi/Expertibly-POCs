@@ -1,0 +1,50 @@
+package com.dynamodb.CustomerProfile.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.dynamodb.CustomerProfile.bean.CustomerProfile;
+import com.dynamodb.CustomerProfile.constant.AppConstant;
+import com.dynamodb.CustomerProfile.repo.CustProfileRepo;
+
+
+
+
+
+public class CustomerProfileService {
+	
+	@Autowired
+	CustProfileRepo custProfileRepo;
+	
+	public void createTable(String tableName)  throws Exception{
+		
+		if (custProfileRepo.getCustomerProfileTable(tableName)!=null)
+		
+		custProfileRepo.createCustomerProfileTable();
+		
+	}
+
+	
+	
+	public void deleteTable(String tableName ) throws Exception {
+		
+		custProfileRepo.deleteCustomerProfileTable(tableName);
+		
+	}
+
+	public static void saveCustomerProfile(CustomerProfile custProfile) {
+		// TODO Auto-generated method stub
+		//createTable(AppConstant.CUSTPROFILE);
+	}
+	
+	public static void getCustomerProfile(String  id, String name) {
+		// TODO Auto-generated method stub
+		//createTable(AppConstant.CUSTPROFILE);
+	}
+
+
+
+	
+	
+	
+
+}

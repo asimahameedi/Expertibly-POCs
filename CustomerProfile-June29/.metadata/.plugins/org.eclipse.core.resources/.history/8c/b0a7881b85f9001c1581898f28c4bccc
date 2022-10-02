@@ -1,0 +1,78 @@
+package com.dynamodb.CustomerProfile.service;
+
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
+import com.amazonaws.services.dynamodbv2.document.Table;
+import com.dynamodb.CustomerProfile.bean.CustomerProfile;
+import com.dynamodb.CustomerProfile.constant.AppConstant;
+import com.dynamodb.CustomerProfile.repo.CustProfileRepo;
+
+
+
+
+
+public class CustomerProfileService {
+	
+	@Autowired
+	CustProfileRepo custProfileRepo;
+	
+	public void createTable(String tableName)  throws Exception{
+		
+		if (custProfileRepo.getCustomerProfileTable(tableName)==null)
+		
+		custProfileRepo.createCustomerProfileTable();
+		
+	}
+
+	
+	
+	public void deleteTable(String tableName ) throws Exception {
+		
+		custProfileRepo.deleteCustomerProfileTable(tableName);
+		
+	}
+
+	public  void saveCustomerProfile(CustomerProfile custProfile) throws Exception {
+		// TODO Auto-generated method stub
+		
+		createTable(AppConstant.CUSTPROFILE);
+		Table table = custProfileRepo.getCustomerProfileTable(AppConstant.CUSTPROFILE);
+		
+		try {
+			String id = UUID.randomUUID().toString();
+			System.out.println("id: " + id);
+			PutItemOutcome outcome = table.putItem(new Item()
+					.withPrimaryKey("id", id)
+					.with("name", CustomerProfile.getName())
+					
+					);
+	
+		}catch (Exception e) {
+			
+		}
+	}
+	
+	public  void getCustomerProfile(String  id, String name) {
+		// TODO Auto-generated method stub
+		//createTable(AppConstant.CUSTPROFILE);
+		
+		
+	}
+
+
+
+	public void updateCustomerProfile(String id, String name, String specialty, String membershipStatus) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	
+	
+	
+
+}

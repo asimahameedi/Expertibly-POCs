@@ -1,0 +1,5 @@
+package com.dynamodb.CustomerProfile.repo;
+
+public class CustProfileRepo {
+
+}

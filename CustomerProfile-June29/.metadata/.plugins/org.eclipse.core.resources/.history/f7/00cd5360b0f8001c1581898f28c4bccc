@@ -1,0 +1,85 @@
+package com.dynamodb.CustomerProfile.repo;
+
+
+import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
+import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
+import com.amazonaws.services.dynamodbv2.model.KeyType;
+import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
+import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
+import com.dynamodb.CustomerProfile.config.DynamoDbConfig;
+import com.dynamodb.CustomerProfile.repo.constant.AppConstant;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.Arrays;
+
+
+
+
+@Repository
+public class CustProfileRepo {
+	@Autowired
+	DynamoDbConfig dynamoDbConfig;
+
+	
+public void createCustomerProfileTable() throws Exception{
+	
+		try {
+			System.out.println("creating the customer profile table, with ...");
+			
+			Table table =dynamoDbConfig.getDynamoDB().createTable(AppConstant.CUSTPROFILE,
+					
+					Arrays.asList(	
+//						new KeySchemaElement( attributeName: "id", KeyType.HASH), 
+						new KeySchemaElement( "id", KeyType.HASH), 
+						new KeySchemaElement( "name", KeyType.RANGE)
+						),
+					
+					Arrays.asList(	
+						new AttributeDefinition("id", ScalarAttributeType.S), 
+						new AttributeDefinition("name", ScalarAttributeType.S)
+					),
+					
+						new ProvisionedThroughput(10L, 10L)
+					);
+					table.waitForActive();
+					System.out.println("Table Created Successfully. Status: " + table.getDescription().getTableStatus());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.err.println("Can not create table");
+			throw new Exception("error occurred");
+			
+		}
+
+}
+
+public Table getCustomerProfileTable(String tableName) {
+	
+	Table table = dynamoDbConfig.getDynamoDB().getTable(tableName);
+	return table;
+}
+
+
+public void deleteCustomerProfileTable(String tableName) throws Exception {
+	
+	Table table = dynamoDbConfig.getDynamoDB().getTable(tableName);
+	try {
+		System.out.println("Attempting to delete the table" + tableName);
+		table.delete();
+		table.waitForDelete();
+		System.out.println("Success");
+		
+	}catch (Exception e) {
+		// TODO Auto-generated catch block
+		System.err.println("Can not delete table");
+		throw new Exception("error occurred");
+	}
+	
+	
+}
+
+
+
+}

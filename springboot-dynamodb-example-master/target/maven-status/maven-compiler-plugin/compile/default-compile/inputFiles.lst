@@ -1,0 +1,5 @@
+/Users/asimahameedi/Documents/MicroservicesProjects/springboot-dynamodb-example-master/src/main/java/com/javatechiue/aws/entity/Address.java
+/Users/asimahameedi/Documents/MicroservicesProjects/springboot-dynamodb-example-master/src/main/java/com/javatechiue/aws/entity/Person.java
+/Users/asimahameedi/Documents/MicroservicesProjects/springboot-dynamodb-example-master/src/main/java/com/javatechiue/aws/repository/PersonRepository.java
+/Users/asimahameedi/Documents/MicroservicesProjects/springboot-dynamodb-example-master/src/main/java/com/javatechiue/aws/config/DynamoDBConfig.java
+/Users/asimahameedi/Documents/MicroservicesProjects/springboot-dynamodb-example-master/src/main/java/com/javatechiue/aws/SpringbootDynamodbExampleApplication.java
