@@ -1,0 +1,32 @@
+server: 
+  port: 9002
+
+ApplicationType: SPRING
+UserName:  ASIMA
+
+spring: 
+  application: 
+    name: STOCKS-SERVICE-PROD
+ 
+eureka:
+   client:
+
+      registerWithEureka: true
+      fetchRegistry: true
+      region: us-east-2
+      preferedSameZone: true
+      availabilityZones:
+         us-east-2: us-east-2c
+      serviceUrl:
+        us-east-2c: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8761/eureka/
+        defaultZone: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8761/eureka/
+    
+   instance: 
+      metadataMap.zone: us-east-2c 
+      
+   
+db-service:
+  ribbon:
+      NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+      listOfServers: ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8300
+    

@@ -1,0 +1,25 @@
+services:
+  mysql:
+    container_name: mysql
+    image: 896204943437.dkr.ecr.us-east-2.amazonaws.com/mysql:latest
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: mysql
+        awslogs-region: us-east-2
+        awslogs-stream-prefix: mysql
+    ports:
+      - 3306:3306
+  db-service:
+    container_name: db-service
+    depends_on:
+      - server
+    image: 896204943437.dkr.ecr.us-east-2.amazonaws.com/db-service:latest
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: db-service
+        awslogs-region: us-east-2
+        awslogs-stream-prefix: db-service
+    restart: always
+version: '3'

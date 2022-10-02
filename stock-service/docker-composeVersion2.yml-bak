@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+  symbols-db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+    
+    ports:
+    - 3306:3306
+    
+    container_name: symbols-db
+    networks:
+      back_net:
+        ipv4_address: 0.0.0.0
+        
+  db-service:
+    image: db-service-image
+    
+    build:
+      context: ./
+      dockerfile: Dockerfile-db-service
+    links: 
+      - symbols-db:symbols-db
+    depends_on:
+      - symbols-db
+    ports:
+      - 8301:8300
+    networks:
+      back_net:
+        ipv4_address: 0.0.0.0
+       
+   
+    container_name: db-service
+networks:
+  back_net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv4: "true"
+      com.docker.network.bridge.name: "back"
+    ipam:
+      driver: default
+      config:
+        - subnet: 0.0.0.0
+          gateway: 0.0.0.0
+  

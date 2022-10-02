@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  mysql-docker-container:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+    volumes:
+      - /data/mysql
+    ports:
+    - 3306:3306
+    
+    container_name: symbols-db
+    networks:
+            - spring-cloud-network
+  db-service:
+    image: db-service-image
+    build:
+      context: ./
+      dockerfile: Dockerfile-db-service
+    links:
+      - mysql-docker-container
+    ports:
+      - 8300:8300
+    networks:
+            - spring-cloud-network
+    volumes:
+      - /data/spring-boot-app
+    container_name: db-service
+networks:
+    spring-cloud-network:
+        driver: bridge

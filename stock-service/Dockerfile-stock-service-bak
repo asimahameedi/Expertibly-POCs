@@ -1,0 +1,4 @@
+FROM openjdk:8-alpine
+COPY ./stock-service.jar stock-service.jar
+EXPOSE 9002
+ENTRYPOINT ["java", "-jar", "stock-service.jar"]

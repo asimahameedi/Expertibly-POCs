@@ -1,0 +1,52 @@
+server: 
+  port: 9002
+
+ApplicationType: SPRING
+UserName:  ASIMA
+
+spring: 
+  application: 
+    name: STOCKS-SERVICE-PROD
+ 
+eureka:
+   client:
+      eurekaServerPort: 8761
+      useDnsForFetchingServiceUrls: true
+      eurekaServerDNSName: ec2-3-133-195-91.us-east-2.compute.amazonaws.com
+      eurekaServerURLContext: eureka
+        
+        
+      registerWithEureka: true
+      fetchRegistry: true
+      region: us-east-2
+      preferedSameZone: true
+      availabilityZones:
+         us-east-2: us-east-2c
+      serviceUrl:
+        us-east-2c: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8761/eureka/
+        defaultZone: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8761/eureka/
+    
+   instance: 
+      metadataMap.zone: us-east-2c 
+      
+     # hostname:ec2-3-133-195-91.us-east-2.compute.amazonaws.com
+      #prefer-ip-address:true
+      #eureka.instance.ip-address=3.133.195.91
+      
+#the-db-service:???? 
+ #   ribbon: 
+    # Eureka vipAddress of the target service 
+  #  DeploymentContextBasedVipAddresses: db-service 
+
+    #listOfServers: localhost:${SERVER.PORT} 
+  #  NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList 
+db-service:
+  ribbon:
+      NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+      listOfServers: ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8300
+    
+#users:
+ # ribbon:
+  #  NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+   # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
+      

@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  symbols-db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+    
+    ports:
+    - 3306:3306
+    
+    container_name: symbols-db
+   
+  db-service:
+    image: db-service-image
+    
+    build:
+      context: ./
+      dockerfile: Dockerfile-db-service
+    links: 
+      - symbols-db:symbols-db
+    depends_on:
+      - symbols-db
+    ports:
+      - 8300:8300
+    
+    container_name: db-service
