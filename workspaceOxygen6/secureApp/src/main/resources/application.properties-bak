@@ -1,0 +1,17 @@
+#spring.datasource.url=jdbc:mysql://localhost:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+#spring.datasource.username=root
+#spring.datasource.password=example
+#spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+#spring.datasource.validationQuery = SELECT 1
+#spring.datasource.jpa.show-sql = true
+#spring.jpa.hibernate.ddl-auto=update
+
+#spring.datasource.jpa.hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
+#spring.datasource.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+#spring.datasource.hikari.initialization-fail-timeout=0
+#spring.datasource.jpa.database=MYSQL
+
+secuirty.oauth2.client.clientId = <CLIENT_ID>
+secuirty.oauth2.client.clientSecret = <CLIENT_SECRET>
+
+

@@ -1,0 +1,47 @@
+server: 
+  port: 8080
+
+ApplicationType: secureApp
+UserName:  ASIMA
+
+security:
+    oauth2:
+      client:
+        clientId: 169015530809-qh37h9fj8hddh24bispfgqr47scgaelr.apps.googleusercontent.com
+        clientSecret: tyDCm1jQvvZ0GMw6Gcp5FbV7
+        accessTokenUri: https://www.googleapis.com/oauth2/v3/token
+        userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+        registered-redirect-uri: http://localhost:8080/login
+        tokenName: oauth_token
+        authenticationScheme: query
+        clientAuthenticationScheme: form
+        #this specifies what user information to request back from google
+        scope:  profile email openid
+      resource:
+        userInfoUri: https://www.googleapis.com/userinfo/v2/me
+        preferTokenInfo:  false
+        
+
+
+
+spring: 
+  application: 
+    name: DB-SERVICE-PROD
+    
+  datasource: 
+    driver-class-name: com.mysql.jdbc.Driver
+    password: example
+    url: "jdbc:mysql://localhost:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+    username: root
+  jpa: 
+    database: MYSQL
+    hibernate: 
+      ddl-auto: update
+      
+
+        
+         
+      
+      
+        
+  

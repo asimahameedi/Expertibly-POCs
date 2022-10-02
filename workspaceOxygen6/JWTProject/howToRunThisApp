@@ -1,0 +1,15 @@
+1-	In postman run the following POST request http://localhost:8080/authenticate 
+	setup username & passowrd in the body of the request as Json
+    Will return a  AWT token
+2-	Grab the token and include on the header as the bearer token like below
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28iLCJleHAiOjE1ODkzOTYxMjUsImlhdCI6MTU4OTM2MDEyNX0.Sx5blQGSrcfUJRLVpOZ8LO2uEgHxx44AnNijAU4NsD4
+
+or it can be setup on the Authorization without he word 'Bearer '
+
+This will be a GET request
+
+http://localhost:8080/hello
+This will allow this URL to go through.
+
+
+https://www.youtube.com/watch?v=X80nJ5T7YpE&t=884s
