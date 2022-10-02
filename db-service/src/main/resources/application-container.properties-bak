@@ -1,0 +1,52 @@
+#spring.application.name=db-service
+spring.application.name=DB-SERVICE-CONTAINER
+server.port=8300
+
+
+
+#spring.jpa.hibernate.ddl-auto=update
+#NLB IP
+#spring.datasource.url=jdbc:mysql://18.190.75.241:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#spring.datasource.username=springuser
+#spring.datasource.url=jdbc:mysql://database-1.csgsrvt56hcg.us-east-2.rds.amazonaws.com:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#spring.datasource.url=jdbc:mysql://127.0.0.1:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+spring.datasource.url=jdbc:mysql://localhost:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#spring.datasource.url=jdbc:mysql://0.0.0.0:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#spring.datasource.url=jdbc:mysql://192.168.0.195:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#spring.datasource.url=jdbc:mysql://18.190.26.217:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#spring.datasource.username=springuser
+#spring.datasource.password=ThePassword
+
+spring.jpa.hibernate.ddl-auto=update
+#this doesn't work on docker
+# aws mysql container ip 18.220.148.134
+#spring.datasource.url=jdbc:mysql://18.220.148.134:3306/db_example?useSSL=false&allowPublicKeyRetrieval=true
+#spring.datasource.url=jdbc:mysql://192.168.0.195:3306/db_example?useSSL=false&allowPublicKeyRetrieval=true
+## using image name does not work as below
+#spring.datasource.url=jdbc:mysql://symbols:3306/db_example?useSSL=false&allowPublicKeyRetrieval=true
+# using zeros only works in local & doesn't connect when using docker-compose or individual container
+#spring.datasource.url=jdbc:mysql://0.0.0.0:3306/db_example?useSSL=false&allowPublicKeyRetrieval=true
+#spring.datasource.url=jdbc:mysql://localhost:3306/db_example?useSSL=false&allowPublicKeyRetrieval=true
+#spring.datasource.url=jdbc:mysql://127.0.0.1:3306/db_example?useSSL=false&allowPublicKeyRetrieval=true
+#this doesn't work on docker
+
+spring.datasource.username=root
+#spring.datasource.password=example123
+#spring.datasource.password=admin123
+spring.datasource.password=example
+
+#spring.datasource.url = jdbc:mysql://localhost:8889/test
+#spring.datasource.username = root
+#spring.datasource.password = root
+spring.datasource.testWhileIdle = true
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+# HikaryCP Properties
+#spring.datasource.hikari.initialization-fail-timeout=0
+spring.datasource.validationQuery = SELECT 1
+spring.datasource.jpa.show-sql = true
+
+spring.datasource.jpa.hibernate.ddl_auto = create
+spring.datasource.jpa.hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
+spring.datasource.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+
+           

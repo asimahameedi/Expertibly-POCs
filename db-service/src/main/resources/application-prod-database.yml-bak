@@ -1,0 +1,15 @@
+---
+server: 
+  port: 8300
+spring: 
+  application: 
+    name: db-service
+  datasource: 
+    driver-class-name: com.mysql.jdbc.Driver
+    password: example123
+    url: "jdbc:mysql://database-1.csgsrvt56hcg.us-east-2.rds.amazonaws.com:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+    username: root
+  jpa: 
+    database: MYSQL
+    hibernate: 
+      ddl-auto: update

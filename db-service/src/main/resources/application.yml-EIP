@@ -1,0 +1,41 @@
+server: 
+  port: 8300
+
+ApplicationType: SPRING
+UserName:  ASIMA
+
+spring: 
+  application: 
+    name: DB-SERVICE-PROD
+    
+  datasource: 
+    driver-class-name: com.mysql.jdbc.Driver
+    password: example123
+    url: "jdbc:mysql://database-1.csgsrvt56hcg.us-east-2.rds.amazonaws.com:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+    username: root
+  jpa: 
+    database: MYSQL
+    hibernate: 
+      ddl-auto: update
+eureka:
+   client:
+     
+      preferedSameZone: true
+      registerWithEureka: true
+      fetchRegistry: true
+      region: us-east-2
+      #availabilityZones:
+       #  us-east-2: us-east-2a, us-east-2b, us-east-2c
+      serviceUrl:
+        # us-east-2a: http://ec2-18-189-46-111.us-east-2.compute.amazonaws.com:8761/eureka/
+         #us-east-2b: http://ec2-18-189-46-111.us-east-2.compute.amazonaws.com:8761/eureka/
+         #us-east-2c: http://ec2-18-189-46-111.us-east-2.compute.amazonaws.com:8761/eureka/
+         defaultZone: http://ec2-18-189-46-111.us-east-2.compute.amazonaws.com:8761/eureka/
+      #instance: 
+       #  metadataMap.zone: us-east-2c
+         
+        # metadataMap.zone: us-east-2b
+         
+         #metadataMap.zone: us-east-2a
+        
+  

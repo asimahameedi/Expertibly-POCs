@@ -1,0 +1,6 @@
+FROM openjdk:8-alpine
+VOLUME /tmp
+COPY target/db-service.jar db-service.jar
+ENV JAVA_OPTS=""
+EXPOSE 8300
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=container","-jar","/db-service.jar"]

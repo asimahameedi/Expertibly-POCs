@@ -1,0 +1,44 @@
+server: 
+  port: 8300
+
+ApplicationType: SPRING
+UserName:  ASIMA
+
+spring: 
+  application: 
+    name: DB-SERVICE-PROD
+    
+  datasource: 
+    driver-class-name: com.mysql.jdbc.Driver
+    password: example123
+    url: "jdbc:mysql://database-1.csgsrvt56hcg.us-east-2.rds.amazonaws.com:3306/db_example?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+    username: root
+  jpa: 
+    database: MYSQL
+    hibernate: 
+      ddl-auto: update
+eureka:
+   client:
+      #eurekaServerPort: 8761
+      #useDnsForFetchingServiceUrls: true
+      #eurekaServerDNSName: ec2-3-133-195-91.us-east-2.compute.amazonaws.com
+      #eurekaServerURLContext: eureka
+      
+      registerWithEureka: true
+      fetchRegistry: true
+      region: us-east-2
+      preferedSameZone: true
+      availabilityZones:
+         us-east-2: us-east-2c
+      serviceUrl:
+         us-east-2c: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8761/eureka/
+         defaultZone: http://ec2-3-133-195-91.us-east-2.compute.amazonaws.com:8761/eureka/
+      instance: 
+         metadataMap.zone: us-east-2c
+  # instance:
+      #hostname:0.0.0.0
+      #hostname:192.168.0.195
+      #hostname:localhost
+     # hostname:ec2-3-133-195-91.us-east-2.compute.amazonaws.com
+      #prefer-ip-address:true
+      #eureka.instance.ip-address=3.133.195.91

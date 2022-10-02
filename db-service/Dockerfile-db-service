@@ -1,0 +1,7 @@
+FROM openjdk:8-alpine
+COPY ./db-service.jar db-service.jar
+EXPOSE 8300
+COPY wait-for-it.sh wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+CMD wait-for-it.sh 0.0.0.0:3306 -t 30
+ENTRYPOINT ["java", "-jar", "db-service.jar"]
